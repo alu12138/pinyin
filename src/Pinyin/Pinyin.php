@@ -214,6 +214,9 @@ class Pinyin
      */
     protected function getFirstLetters($pinyin, $settings)
     {
+        $pinyin = str_replace(':', '', $pinyin); // 处理拼音中绿 (lu:4) 这样的情况
+        $pinyin = preg_replace('/\s?[a-zA-Z]+(\b|\s)/', '', $pinyin);
+
         $letterCase = $settings['uppercase'] ? 'strtoupper' : 'strtolower';
 
         $letters = array();
